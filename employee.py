@@ -8,10 +8,10 @@ class commission(Enum):
     CONTRACT_COMMISSION = str('C')
 
     def create_bonus_str(self,given_bonus):
-        self.BONUS =  " and receives a bonus commission of " + given_bonus
+        self.BONUS =  " and receives a bonus commission of " + str(given_bonus)
 
     def create_contract_commission_str(self,contract_num,rate_per):
-        self.CONTRACT_COMMISSION = " and receives a commission for " + contract_num + " contract(s) at " + rate_per + "/contract"
+        self.CONTRACT_COMMISSION = " and receives a commission for " + str(contract_num) + " contract(s) at " + str(rate_per) + "/contract"
 
 @unique
 class contract(Enum):
@@ -19,10 +19,10 @@ class contract(Enum):
     HOURLY = str('H')
 
     def create_contract_str(self, monthly):
-        self.MONTHLY_CONTRACT = " works on a monthly salary of " + monthly
+        self.MONTHLY_CONTRACT = " works on a monthly salary of " + str(monthly)
 
     def create_hourly_str(self,total_hrs,hourly):
-        self.HOURLY = " works on a contract of" +  total_hrs + " hours at " +  hourly + "/hour"
+        self.HOURLY = " works on a contract of " +  str(total_hrs) + " hours at " +  str(hourly) + "/hour"
 
 class Employee:
 
@@ -68,7 +68,7 @@ class Employee:
             else:
                 output_str += self.emp_commission.CONTRACT_COMMISSION
 
-        output_str += "." + " Their total pay is " + self.total_pay
+        output_str += "." + " Their total pay is " + str(self.total_pay)
         return output_str
 
     def set_commission_bonus(self,bonus):
