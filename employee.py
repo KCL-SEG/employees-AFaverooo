@@ -8,10 +8,10 @@ class commission(Enum):
     CONTRACT_COMMISSION = str('C')
 
     def create_bonus_str(self,given_bonus):
-        self.BONUS = f' and receives a bonus commission of {given_bonus}'
+        self.BONUS =  " and receives a bonus commission of " + given_bonus
 
     def create_contract_commission_str(self,contract_num,rate_per):
-        self.CONTRACT_COMMISSION = f' and receives a commission for {contract_num} contract(s) at {rate_per}/contract'
+        self.CONTRACT_COMMISSION = " and receives a commission for " + contract_num + " contract(s) at " + rate_per + "/contract"
 
 @unique
 class contract(Enum):
@@ -19,14 +19,14 @@ class contract(Enum):
     HOURLY = str('H')
 
     def create_contract_str(self, monthly):
-        self.MONTHLY_CONTRACT = f' works on a monthly salary of {monthly}'
+        self.MONTHLY_CONTRACT = " works on a monthly salary of " + monthly
 
     def create_hourly_str(self,total_hrs,hourly):
-        self.HOURLY = f' works on a contract of {total_hrs} hours at {hourly}/hour'
+        self.HOURLY = " works on a contract of" +  total_hrs + " hours at " +  hourly + "/hour"
 
 class Employee:
 
-    def __init__(self, name, pay, employee_contract: contract, *hours):
+    def __init__(self, name, pay, employee_contract, *hours):
         self.name = name
         self.wage = pay
         self.emp_contract = employee_contract
@@ -68,7 +68,7 @@ class Employee:
             else:
                 output_str += self.emp_commission.CONTRACT_COMMISSION
 
-        output_str += "." + f' Their total pay is {self.total_pay}.'
+        output_str += "." + " Their total pay is " + self.total_pay
         return output_str
 
     def set_commission_bonus(self,bonus):
@@ -83,22 +83,23 @@ class Employee:
 
 # Billie works on a monthly salary of 4000. Their total pay is 4000.
 billie = Employee('Billie',4000,contract.MONTHLY_CONTRACT)
-#print(billie)
+print(billie)
 # Charlie works on a contract of 100 hours at 25/hour. Their total pay is 2500.
 charlie = Employee('Charlie',25,contract.HOURLY,100)
-#print(charlie)
+print(charlie)
 # Renee works on a monthly salary of 3000 and receives a commission for 4 contract(s) at 200/contract.  Their total pay is 3800.
 renee = Employee('Renee',3000,contract.MONTHLY_CONTRACT)
 renee.set_commission_contracts(4,200)
-mystr = str(renee)
-print(mystr)
+print(renee)
 # Jan works on a contract of 150 hours at 25/hour and receives a commission for 3 contract(s) at 220/contract.  Their total pay is 4410.
 jan = Employee('Jan',25,contract.HOURLY,150)
 jan.set_commission_contracts(3,220)
+print(jan)
 # Robbie works on a monthly salary of 2000 and receives a bonus commission of 1500.  Their total pay is 3500.
 robbie = Employee('Robbie',2000,contract.MONTHLY_CONTRACT)
 robbie.set_commission_bonus(1500)
-
+print(robbie)
 # Ariel works on a contract of 120 hours at 30/hour and receives a bonus commission of 600.  Their total pay is 4200.
 ariel = Employee('Ariel',30,contract.HOURLY,120)
 ariel.set_commission_bonus(600)
+print(ariel)
